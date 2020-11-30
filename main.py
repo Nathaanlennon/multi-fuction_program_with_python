@@ -28,6 +28,9 @@ def ia():
         if "division" in x:
             division()
 
+        if "operation" in x:
+            operation()
+
 
 def addition():
     i = 1
@@ -117,6 +120,98 @@ def division():
                     result /= div
             i += 1
     print(result)
+
+
+def operation():
+    num = 1
+    ope = []
+    r = 1
+    res = False
+    x = input(f"What's your number {num}?")
+    if x == "stop":
+        return
+    else:
+        ope += [x]
+    while r != 0:
+        sign = input("What's your operation ? (stop for stop)")
+        if sign == "stop":
+            r = 0
+        elif sign == "plus" or sign == "+":
+            ope += ["+"]
+        elif sign == "minus" or sign == "-":
+            ope += ["-"]
+        elif sign == "times" or sign == "*":
+            ope += ["*"]
+        elif sign == "over" or sign == "/":
+            ope += ["/"]
+        num += 1
+        if r != 0:
+            ope += [input(f"What's your number {num} ?")]
+    print(ope)
+    a = input("it's your calculation ?")
+    if a == "yes":
+        res = False
+        while not res:
+            index = 0
+            sign = "none"
+            if "*" in ope or "/" in ope:
+                while "*" in ope or "/" in ope:
+                    sign = (ope[index])
+                    index += 1
+                    if sign == "*":
+                        x = float(ope[(ope.index("*") - 1)])
+                        y = float(ope[(ope.index("*") + 1)])
+                        re = x * y
+                        ope.pop(ope.index("*") - 1)
+                        ope.pop(ope.index("*") + 1)
+                        ope.insert((ope.index("*") + 1), re)
+                        ope.pop(ope.index("*"))
+                        index = 0
+
+                    elif sign == "/":
+                        x = float(ope[(ope.index("/") - 1)])
+                        y = float(ope[(ope.index("/") + 1)])
+                        re = x / y
+                        ope.pop(ope.index("/") - 1)
+                        ope.pop(ope.index("/") + 1)
+                        ope.insert((ope.index("/") + 1), re)
+                        ope.pop(ope.index("/"))
+                        index = 0
+
+            else:
+                while "+" in ope or "-" in ope:
+                    sign = (ope[index])
+                    index += 1
+
+                    if sign == "+":
+                        x = float(ope[(ope.index("+") - 1)])
+                        y = float(ope[(ope.index("+") + 1)])
+                        re = x + y
+                        ope.pop(ope.index("+") - 1)
+                        ope.pop(ope.index("+") + 1)
+                        ope.insert((ope.index("+") + 1), re)
+                        ope.pop(ope.index("+"))
+                        index = 0
+
+                    elif sign == "-":
+                        x = float(ope[(ope.index("-") - 1)])
+                        y = float(ope[(ope.index("-") + 1)])
+                        re = x - y
+                        ope.pop(ope.index("-") - 1)
+                        ope.pop(ope.index("-") + 1)
+                        ope.insert((ope.index("-") + 1), re)
+                        ope.pop(ope.index("-"))
+                        index = 0
+
+                else:
+                    res = True
+
+        print(ope)
+
+
+    elif a == "no":
+        operation()
+
 
 
 ia()
