@@ -31,6 +31,9 @@ def ia():
         if "operation" in x:
             operation()
 
+        if  "encrypt" in x or "decrypt" in x or "codex" in x:
+            codex()
+
 
 def addition():
     i = 1
@@ -126,7 +129,6 @@ def operation():
     num = 1
     ope = []
     r = 1
-    res = False
     x = input(f"What's your number {num}?")
     if x == "stop":
         return
@@ -207,11 +209,59 @@ def operation():
                     res = True
 
         print(ope)
-
-
     elif a == "no":
         operation()
 
+
+def codex():
+    print("It's \"The Codex\", a special encryptor. You can encrypt and decrypt texts.")
+    choice1 = [1]
+    choice2 = [2]
+    print(f"{choice1} encrypt")
+    print(f"{choice2} decrypt")
+    choice = input("")
+    if choice == "1" or choice == "[1]":
+        print("choose encrypt level (1, 2, 3)")
+        choice = input("")
+        if choice == "1":
+            code = []
+            encrypt_1 = []
+            encrypt_2 = ""
+            print("What's your text ?")
+            text = input("")
+            for i in range(len(text)):
+                a = text[i]
+                code.append(a)
+            print(code)
+            for i in range(len(code)):
+                a = ord(code[i])
+                encrypt_1.append(a)
+            print(encrypt_1)
+            for i in range(len(encrypt_1)):
+                a = chr((encrypt_1[i] + 1))
+                encrypt_2 += a
+            print(encrypt_2)
+    if choice == "2" or choice == "[2]":
+        print("choose decrypt level (1, 2, 3)")
+        choice = input("")
+        if choice == "1":
+            code = []
+            decrypt_1 = []
+            decrypt_2 = ""
+            print("What's your encrypt text ?")
+            text = input("")
+            for i in range(len(text)):
+                a = text[i]
+                code.append(a)
+            print(code)
+            for i in range(len(code)):
+                a = ord(code[i])
+                decrypt_1.append(a)
+            print(decrypt_1)
+            for i in range(len(decrypt_1)):
+                a = chr((decrypt_1[i] - 1))
+                decrypt_2 += a
+            print(decrypt_2)
 
 
 ia()
